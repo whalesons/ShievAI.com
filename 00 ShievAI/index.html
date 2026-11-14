@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ShievAI — Intelligent Real Estate Price Estimation &amp; Digital Services</title>
+<!-- Google Fonts: Space Grotesk & Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS with Forms & Container Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-dim": "#e0d9d5",
+            "on-error-container": "#93000a",
+            "primary-fixed-dim": "#ffb691",
+            "secondary-fixed-dim": "#ffb689",
+            "on-background": "#1e1b19",
+            "on-primary-fixed-variant": "#793100",
+            "on-primary": "#ffffff",
+            "on-secondary-fixed-variant": "#743500",
+            "inverse-surface": "#33302e",
+            "text-muted": "#706963",
+            "on-secondary-fixed": "#311300",
+            "tertiary-fixed-dim": "#d0c4bb",
+            "outline": "#8a7267",
+            "primary": "#9e4200",
+            "on-error": "#ffffff",
+            "tertiary": "#655d55",
+            "on-surface-variant": "#574239",
+            "secondary-container": "#ff964e",
+            "surface-pure": "#FFFFFF",
+            "on-primary-fixed": "#341100",
+            "surface-container-high": "#eee7e3",
+            "on-tertiary-container": "#332c26",
+            "error": "#ba1a1a",
+            "primary-container": "#e87532",
+            "on-secondary-container": "#6e3200",
+            "surface-subtle": "#FFFAF6",
+            "inverse-on-surface": "#f7efec",
+            "background": "#fff8f5",
+            "surface-container": "#f4ece9",
+            "tertiary-container": "#9e938b",
+            "on-tertiary-fixed": "#201b15",
+            "on-secondary": "#ffffff",
+            "surface": "#fff8f5",
+            "secondary": "#984800",
+            "on-tertiary": "#ffffff",
+            "surface-container-lowest": "#ffffff",
+            "on-tertiary-fixed-variant": "#4d453e",
+            "border-warm": "#F1DED0",
+            "on-primary-container": "#511e00",
+            "surface-bright": "#fff8f5",
+            "surface-container-low": "#faf2ee",
+            "surface-container-highest": "#e8e1dd",
+            "outline-variant": "#dec1b4",
+            "inverse-primary": "#ffb691",
+            "tertiary-fixed": "#ede0d7",
+            "error-container": "#ffdad6",
+            "primary-fixed": "#ffdbcb",
+            "surface-tint": "#9e4200",
+            "surface-variant": "#e8e1dd",
+            "secondary-fixed": "#ffdbc8",
+            "on-surface": "#1e1b19"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "margin-mobile": "1.25rem",
+            "space-lg": "2.5rem",
+            "margin": "2rem",
+            "space-xs": "0.375rem",
+            "space-sm": "0.75rem",
+            "space-xl": "4.5rem",
+            "gutter": "0rem",
+            "space-md": "1.5rem"
+          },
+          "fontFamily": {
+            "headline-md": ["Space Grotesk"],
+            "headline-lg": ["Space Grotesk"],
+            "headline-lg-mobile": ["Space Grotesk"],
+            "headline-sm": ["Space Grotesk"],
+            "label-lg": ["Space Grotesk"],
+            "label-md": ["Space Grotesk"],
+            "display-hero": ["Space Grotesk"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "caption": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Space Grotesk"]
+          },
+          "fontSize": {
+            "headline-md": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "headline-lg-mobile": ["30px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "500" }],
+            "headline-sm": ["22px", { "lineHeight": "30px", "fontWeight": "500" }],
+            "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+            "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "600" }],
+            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "body-md": ["16px", { "lineHeight": "26px", "fontWeight": "400" }],
+            "body-sm": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
+            "body-lg": ["18px", { "lineHeight": "30px", "fontWeight": "400" }],
+            "caption": ["12px", { "lineHeight": "18px", "fontWeight": "500" }],
+            "display-hero-mobile": ["38px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+
+    /* Transparent navbar over hero -> solid navbar on scroll */
+    #main-header.nav-transparent {
+      background-color: transparent;
+      border-bottom-color: transparent;
+      box-shadow: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+    #main-header.nav-transparent .nav-link {
+      color: rgba(255, 255, 255, 0.88);
+    }
+    #main-header.nav-transparent .nav-link:hover {
+      color: #ffffff;
+    }
+    #main-header.nav-transparent .nav-link-active {
+      color: #ffb691;
+      border-bottom-color: #ffb691;
+    }
+    #main-header.nav-transparent .nav-toggle-btn {
+      color: #ffffff;
+    }
+    #main-header.nav-transparent .logo-wordmark {
+      fill: #ffffff;
+    }
+    #main-header.nav-transparent .logo-subtitle {
+      fill: rgba(255, 255, 255, 0.72);
+    }
+  </style>
+</head>
+<body class="bg-surface-pure text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+<script>
+    const ESTIMATOR_URL = 'https://estimator.shievai.com';
+  </script>
+<!-- FIXED HEADER / NAVIGATION (Transparent over Hero, Solid on Scroll) -->
+<header class="nav-transparent fixed top-0 inset-x-0 z-50 bg-surface-pure/95 backdrop-blur-md border-b border-border-warm shadow-sm transition-all duration-300" id="main-header">
+<div class="w-full max-w-[1280px] mx-auto px-6 flex items-center justify-between gap-4 h-20 whitespace-nowrap">
+<a class="flex items-center gap-3 group focus:outline-none shrink-0" href="#">
+<svg aria-label="ShievAI Corporate Logo" class="h-9 w-auto" fill="none" height="80" viewBox="0 0 320 80" width="320" xmlns="http://www.w3.org/2000/svg">
+<g transform="translate(10, 15)">
+<path d="M25 5 L45 25 L35 25 L35 45 L15 45 L15 25 L5 25 Z" fill="#E87532"></path>
+<path d="M25 15 L37 27 L30 27 L30 40 L20 40 L20 27 L13 27 Z" fill="#FFF2E8"></path>
+<circle cx="25" cy="27" fill="#E87532" r="4"></circle>
+</g>
+<text class="logo-wordmark transition-colors duration-300" fill="#24211F" font-family="'Space Grotesk', 'Inter', sans-serif" font-size="32" font-weight="700" letter-spacing="-0.03em" x="75" y="48">
+    Shiev<tspan fill="#E87532">AI</tspan>
+</text>
+<text class="logo-subtitle transition-colors duration-300" fill="#706963" font-family="'Inter', sans-serif" font-size="9" font-weight="600" letter-spacing="0.22em" text-transform="uppercase" x="76" y="62">
+    Real Estate Technology
+  </text>
+</svg>
+</a>
+<nav class="hidden lg:flex items-center space-x-5 xl:space-x-8 whitespace-nowrap">
+<a class="nav-link-active font-medium border-b-2 border-primary text-primary pb-1 font-label-lg text-label-lg transition-colors duration-200" href="#">Home</a>
+<a class="nav-link text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg transition-colors duration-150" href="#estimator-intro">Real Estate Estimator</a>
+<a class="nav-link text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg transition-colors duration-150" href="#why-shievai">Why ShievAI</a>
+<a class="nav-link text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg transition-colors duration-150" href="#digital-services">Digital Services</a>
+<a class="nav-link text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg transition-colors duration-150" href="#about">About Us</a>
+<a class="nav-link text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg transition-colors duration-150" href="#contact">Contact</a>
+</nav>
+<div class="hidden lg:flex items-center shrink-0">
+<a class="bg-primary-container text-on-primary hover:bg-[#d66524] whitespace-nowrap px-4 xl:px-6 py-3 rounded-lg font-label-lg text-label-lg transition-all duration-200 flex items-center gap-2 group shadow-sm hover:shadow-md" href="https://estimator.shievai.com" rel="noopener noreferrer" target="_blank">
+<span>Explore Property Estimator</span>
+<span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="flex lg:hidden items-center">
+<button aria-label="Toggle navigation menu" class="nav-toggle-btn text-on-surface p-2 focus:outline-none transition-colors duration-200" id="mobile-menu-toggle" type="button">
+<span class="material-symbols-outlined text-3xl" data-icon="menu">menu</span>
+</button>
+</div>
+</div>
+<div class="hidden lg:hidden bg-surface-subtle border-b border-border-warm px-6 py-6 transition-all" id="mobile-menu">
+<nav class="flex flex-col space-y-4">
+<a class="text-primary font-medium font-label-lg text-label-lg py-2 border-b border-border-warm/50" href="#">Home</a>
+<a class="text-on-surface-variant hover:text-primary font-label-lg text-label-lg py-2 border-b border-border-warm/50" href="#estimator-intro">Real Estate Estimator</a>
+<a class="text-on-surface-variant hover:text-primary font-label-lg text-label-lg py-2 border-b border-border-warm/50" href="#why-shievai">Why ShievAI</a>
+<a class="text-on-surface-variant hover:text-primary font-label-lg text-label-lg py-2 border-b border-border-warm/50" href="#digital-services">Digital Services</a>
+<a class="text-on-surface-variant hover:text-primary font-label-lg text-label-lg py-2 border-b border-border-warm/50" href="#about">About Us</a>
+<a class="text-on-surface-variant hover:text-primary font-label-lg text-label-lg py-2" href="#contact">Contact</a>
+<a class="bg-primary-container text-on-primary text-center px-6 py-3 rounded-lg font-label-lg text-label-lg mt-2 shadow-sm" href="https://estimator.shievai.com" rel="noopener noreferrer" target="_blank">
+          Explore Property Estimator
+        </a>
+</nav>
+</div>
+</header>
+<main class="w-full flex flex-col items-center">
+<!-- 1. HERO SECTION -->
+<section class="relative isolate overflow-hidden w-full bg-[#1e1b19] pt-32 md:pt-40 pb-28 md:pb-36 flex flex-col items-center">
+<!-- Hero background image + dark readability overlays (scrolls normally with the page) -->
+<img alt="Luxury Indian villa at dusk" class="absolute inset-0 -z-20 w-full h-full object-cover object-center" src="assets/villa.jpg"/>
+<div class="absolute inset-0 -z-10 bg-gradient-to-b from-black/75 via-black/55 to-[#1e1b19]/85"></div>
+<div class="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.45),transparent_70%)]"></div>
+<!-- Dark bottom blend -->
+<div class="absolute inset-x-0 bottom-0 h-36 md:h-48 -z-10 bg-gradient-to-b from-transparent via-[#1e1b19]/75 to-[#1e1b19]"></div>
+<div class="w-full max-w-[820px] mx-auto px-6 text-center flex flex-col items-center relative z-10">
+<div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-white/10 backdrop-blur-sm border border-white/25 mb-8 shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-md text-label-md text-[#ffb691] tracking-wider">REAL ESTATE TECHNOLOGY</span>
+</div>
+<h1 class="font-display-hero-mobile md:font-display-hero text-display-hero-mobile md:text-display-hero text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.5)] tracking-tight mb-4 max-w-3xl">
+          Know Your Property's Estimated Worth.
+        </h1>
+<h2 class="font-headline-sm md:font-headline-md text-headline-sm md:text-headline-md text-[#ffb691] drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)] mb-6 font-medium tracking-tight">
+          Smart Real Estate Price Estimation by ShievAI.
+        </h2>
+<p class="font-body-lg text-body-lg text-white/90 drop-shadow-[0_1px_6px_rgba(0,0,0,0.6)] mb-10 max-w-2xl leading-relaxed">
+          Discover estimated property values through intelligent real estate insights. ShievAI makes exploring your property's potential value simpler and more accessible.
+        </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+<a class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-primary-container hover:bg-[#d66524] text-on-primary px-8 py-4 rounded-lg font-label-lg text-label-lg transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5" href="https://estimator.shievai.com" rel="noopener noreferrer" target="_blank">
+<span>Explore Property Estimator</span>
+<span class="material-symbols-outlined text-base" data-icon="arrow_forward">arrow_forward</span>
+</a>
+<a class="w-full sm:w-auto inline-flex items-center justify-center bg-white/5 hover:bg-white/15 backdrop-blur-sm text-white border border-white/40 px-8 py-4 rounded-lg font-label-lg text-label-lg transition-all duration-200" href="#estimator-intro">
+<span>Discover ShievAI</span>
+</a>
+</div>
+</div>
+</section>
+<!-- 2. REAL ESTATE VALUATION SECTION -->
+<section class="w-full bg-[#FFFAF6] py-space-xl border-b border-[#F1DED0] flex flex-col items-center" id="estimator-intro">
+<div class="w-full max-w-[900px] mx-auto px-6 flex flex-col items-center">
+<div class="text-center mb-16">
+<p class="font-label-md text-label-md text-primary tracking-widest mb-3 uppercase">Property Valuation</p>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-6 tracking-tight">
+            Property Valuation, Made Simpler.
+          </h2>
+<p class="font-body-lg text-body-lg text-text-muted max-w-2xl leading-relaxed mx-auto">
+            Understanding the potential value of your property should be simple. ShievAI brings property estimation into a convenient digital experience, helping people explore property values and real estate insights with clarity.
+          </p>
+</div>
+<!-- Editorial Narrative Layout (No basic cards) -->
+<div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+<div class="p-8 rounded-2xl bg-white border border-[#F1DED0] shadow-sm flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-[#FFF2E8] border border-[#F1DED0] flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-2xl" data-icon="analytics">analytics</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Property Valuation Insights</h3>
+<p class="font-body-md text-body-md text-text-muted leading-relaxed">
+              Advanced computational models analyzing historical transactions, micro-market trends, and architectural features to synthesize reliable price projections.
+            </p>
+</div>
+</div>
+<div class="p-8 rounded-2xl bg-white border border-[#F1DED0] shadow-sm flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-[#FFF2E8] border border-[#F1DED0] flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-2xl" data-icon="location_on">location_on</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Location-Based Information</h3>
+<p class="font-body-md text-body-md text-text-muted leading-relaxed">
+              Granular regional analysis incorporating proximity to infrastructure, urban transit developments, community livability metrics, and environmental zoning.
+            </p>
+</div>
+</div>
+<div class="p-8 rounded-2xl bg-white border border-[#F1DED0] shadow-sm flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-[#FFF2E8] border border-[#F1DED0] flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-2xl" data-icon="touch_app">touch_app</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Simple Digital Experience</h3>
+<p class="font-body-md text-body-md text-text-muted leading-relaxed">
+              An intuitive, friction-free journey crafted for homeowners, high-net-worth investors, and real estate professionals seeking clarity without procedural bloat.
+            </p>
+</div>
+</div>
+<div class="p-8 rounded-2xl bg-white border border-[#F1DED0] shadow-sm flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-[#FFF2E8] border border-[#F1DED0] flex items-center justify-center text-primary mb-6">
+<span class="material-symbols-outlined text-2xl" data-icon="bar_chart">bar_chart</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-3">Easy-to-Understand Results</h3>
+<p class="font-body-md text-body-md text-text-muted leading-relaxed">
+              Clear, transparent valuation ranges, baseline confidence factors, and comparative metrics presented with architectural precision and zero opaque jargon.
+            </p>
+</div>
+</div>
+</div>
+<div class="text-center mb-16">
+<a class="inline-flex items-center justify-center gap-2 bg-primary-container hover:bg-[#d66524] text-on-primary px-8 py-4 rounded-lg font-label-lg text-label-lg transition-all duration-200 shadow-md hover:shadow-lg" href="https://estimator.shievai.com" rel="noopener noreferrer" target="_blank">
+<span>Explore Property Estimator</span>
+<span class="material-symbols-outlined text-base" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Apartment Terrace Photograph Integration with Floating Caption Card -->
+<div class="w-full max-w-[1140px] px-4 md:px-margin mx-auto pb-6">
+<div class="w-full border border-[#F1DED0] bg-white p-3 rounded-2xl overflow-hidden shadow-xl relative">
+<div class="relative w-full aspect-[16/9] overflow-hidden rounded-xl">
+<img alt="Terrace architecture and residential design" class="w-full h-full object-cover" src="assets/terrace.jpg"/>
+<div class="absolute bottom-6 left-6 p-4 rounded-xl backdrop-blur-md bg-white/90 border border-[#F1DED0] shadow-lg max-w-md hidden sm:block">
+<p class="font-caption text-caption text-text-muted font-medium">Terracotta and Sandstone Finishes</p>
+<p class="font-headline-sm text-on-surface text-base">Analyzing Spatial Value in Luxury Developments</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. WHY SHIEVAI? -->
+<section class="w-full bg-surface-pure py-space-xl border-b border-border-warm flex flex-col items-center" id="why-shievai">
+<div class="w-full max-w-[820px] mx-auto px-6 flex flex-col items-center">
+<div class="text-center mb-16">
+<p class="font-label-md text-label-md text-primary tracking-widest mb-3 uppercase">Our Approach</p>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-4 tracking-tight">
+            Real Estate Insights. A Smarter Digital Experience.
+          </h2>
+<p class="font-body-md text-body-md text-text-muted max-w-xl mx-auto">
+            Grounded in empirical real estate data and clean computational rigor. No synthetic testimonials, no exaggerated speculation.
+          </p>
+</div>
+<!-- Sophisticated 5-Step Numbered Editorial Timeline -->
+<div class="w-full flex flex-col divide-y divide-border-warm border-y border-border-warm py-4">
+<div class="py-8 flex flex-col md:flex-row md:items-center justify-between gap-6 group hover:px-4 transition-all rounded-xl">
+<div class="flex items-start md:items-center gap-6">
+<span class="font-display-hero text-3xl md:text-4xl text-primary-container font-light">01</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Technology-driven property insights</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-1">Leveraging algorithmic pattern recognition across transaction volumes.</p>
+</div>
+</div>
+<span class="font-label-md text-label-md text-primary bg-[#FFF2E8] px-3 py-1.5 rounded-lg border border-border-warm self-start md:self-auto">System Principle</span>
+</div>
+<div class="py-8 flex flex-col md:flex-row md:items-center justify-between gap-6 group hover:px-4 transition-all rounded-xl">
+<div class="flex items-start md:items-center gap-6">
+<span class="font-display-hero text-3xl md:text-4xl text-primary-container font-light">02</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Dedicated focus on real estate price estimation</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-1">Purpose-built infrastructure specifically engineered for spatial asset valuation.</p>
+</div>
+</div>
+<span class="font-label-md text-label-md text-primary bg-[#FFF2E8] px-3 py-1.5 rounded-lg border border-border-warm self-start md:self-auto">Domain Core</span>
+</div>
+<div class="py-8 flex flex-col md:flex-row md:items-center justify-between gap-6 group hover:px-4 transition-all rounded-xl">
+<div class="flex items-start md:items-center gap-6">
+<span class="font-display-hero text-3xl md:text-4xl text-primary-container font-light">03</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Simple and accessible digital experiences</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-1">Eliminating clunky institutional spreadsheets in favor of responsive clarity.</p>
+</div>
+</div>
+<span class="font-label-md text-label-md text-primary bg-[#FFF2E8] px-3 py-1.5 rounded-lg border border-border-warm self-start md:self-auto">Accessibility</span>
+</div>
+<div class="py-8 flex flex-col md:flex-row md:items-center justify-between gap-6 group hover:px-4 transition-all rounded-xl">
+<div class="flex items-start md:items-center gap-6">
+<span class="font-display-hero text-3xl md:text-4xl text-primary-container font-light">04</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Clear, unbiased presentation of property information</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-1">Strict algorithmic neutrality uncompromised by broker commissions or sponsored placement.</p>
+</div>
+</div>
+<span class="font-label-md text-label-md text-primary bg-[#FFF2E8] px-3 py-1.5 rounded-lg border border-border-warm self-start md:self-auto">Integrity</span>
+</div>
+<div class="py-8 flex flex-col md:flex-row md:items-center justify-between gap-6 group hover:px-4 transition-all rounded-xl">
+<div class="flex items-start md:items-center gap-6">
+<span class="font-display-hero text-3xl md:text-4xl text-primary-container font-light">05</span>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">A modern, forward-thinking approach to property valuation</h3>
+<p class="font-body-sm text-body-sm text-text-muted mt-1">Continually integrating micro-locational developments and environmental factors.</p>
+</div>
+</div>
+<span class="font-label-md text-label-md text-primary bg-[#FFF2E8] px-3 py-1.5 rounded-lg border border-border-warm self-start md:self-auto">Modernity</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 4. SECONDARY BUSINESS – DIGITAL & DEVELOPMENT SERVICES -->
+<section class="w-full bg-[#FFFAF6] py-space-xl border-b border-[#F1DED0] flex flex-col items-center" id="digital-services">
+<div class="w-full max-w-[820px] mx-auto px-6 flex flex-col items-center">
+<div class="text-center mb-16">
+<p class="font-label-md text-label-md text-primary tracking-widest mb-3 uppercase">Secondary Services</p>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-4 tracking-tight">
+            Beyond Real Estate, We Build Digital Solutions.
+          </h2>
+<p class="font-body-md text-body-md text-text-muted max-w-2xl mx-auto leading-relaxed">
+            Alongside our real estate technology focus, ShievAI also helps businesses establish and grow their digital presence through development and creative services.
+          </p>
+</div>
+<!-- Sleek Horizontal Rows with Smooth Hover States & Minimal Line Icons -->
+<div class="w-full flex flex-col border border-[#F1DED0] bg-white rounded-2xl overflow-hidden divide-y divide-[#F1DED0] shadow-sm">
+<div class="p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6 hover:bg-[#FFF2E8]/40 transition-all">
+<div class="flex items-start gap-5">
+<div class="w-12 h-12 rounded-xl bg-[#FFF2E8] border border-[#F1DED0] flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-2xl" data-icon="web">web</span>
+</div>
+<div>
+<div class="flex items-center gap-3">
+<span class="font-label-md text-label-md text-text-muted font-mono">01 / DIGITAL</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Website Development</h3>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted mt-2 max-w-lg leading-relaxed">
+                  High-performance, responsive web applications engineered with modern technologies and clean architecture.
+                </p>
+</div>
+</div>
+<a class="shrink-0 inline-flex items-center gap-1.5 text-primary font-label-lg text-label-lg hover:underline group" href="#contact">
+<span>Learn More</span>
+<span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6 hover:bg-[#FFF2E8]/40 transition-all">
+<div class="flex items-start gap-5">
+<div class="w-12 h-12 rounded-xl bg-[#FFF2E8] border border-[#F1DED0] flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-2xl" data-icon="search_insights">search_insights</span>
+</div>
+<div>
+<div class="flex items-center gap-3">
+<span class="font-label-md text-label-md text-text-muted font-mono">02 / VISIBILITY</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Search Engine Optimization (SEO)</h3>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted mt-2 max-w-lg leading-relaxed">
+                  Technical and strategic optimization ensuring high search engine rankings and measurable organic reach.
+                </p>
+</div>
+</div>
+<a class="shrink-0 inline-flex items-center gap-1.5 text-primary font-label-lg text-label-lg hover:underline group" href="#contact">
+<span>Learn More</span>
+<span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6 hover:bg-[#FFF2E8]/40 transition-all">
+<div class="flex items-start gap-5">
+<div class="w-12 h-12 rounded-xl bg-[#FFF2E8] border border-[#F1DED0] flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-2xl" data-icon="smartphone">smartphone</span>
+</div>
+<div>
+<div class="flex items-center gap-3">
+<span class="font-label-md text-label-md text-text-muted font-mono">03 / ENGINEERING</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Mobile App Development</h3>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted mt-2 max-w-lg leading-relaxed">
+                  Fluid, cross-platform and native iOS &amp; Android applications tailored for scale and exceptional user experience.
+                </p>
+</div>
+</div>
+<a class="shrink-0 inline-flex items-center gap-1.5 text-primary font-label-lg text-label-lg hover:underline group" href="#contact">
+<span>Learn More</span>
+<span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6 hover:bg-[#FFF2E8]/40 transition-all">
+<div class="flex items-start gap-5">
+<div class="w-12 h-12 rounded-xl bg-[#FFF2E8] border border-[#F1DED0] flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-2xl" data-icon="draw">draw</span>
+</div>
+<div>
+<div class="flex items-center gap-3">
+<span class="font-label-md text-label-md text-text-muted font-mono">04 / CREATIVE</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Logo Making</h3>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted mt-2 max-w-lg leading-relaxed">
+                  Distinctive, timeless brand identities, vector marks, and comprehensive visual style guides.
+                </p>
+</div>
+</div>
+<a class="shrink-0 inline-flex items-center gap-1.5 text-primary font-label-lg text-label-lg hover:underline group" href="#contact">
+<span>Learn More</span>
+<span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6 hover:bg-[#FFF2E8]/40 transition-all">
+<div class="flex items-start gap-5">
+<div class="w-12 h-12 rounded-xl bg-[#FFF2E8] border border-[#F1DED0] flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-2xl" data-icon="tv">tv</span>
+</div>
+<div>
+<div class="flex items-center gap-3">
+<span class="font-label-md text-label-md text-text-muted font-mono">05 / MEDIA</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Screen Advertising</h3>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted mt-2 max-w-lg leading-relaxed">
+                  High-impact digital billboard, in-store display, and digital out-of-home (DOOH) promotional assets.
+                </p>
+</div>
+</div>
+<a class="shrink-0 inline-flex items-center gap-1.5 text-primary font-label-lg text-label-lg hover:underline group" href="#contact">
+<span>Learn More</span>
+<span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6 hover:bg-[#FFF2E8]/40 transition-all">
+<div class="flex items-start gap-5">
+<div class="w-12 h-12 rounded-xl bg-[#FFF2E8] border border-[#F1DED0] flex items-center justify-center shrink-0 text-primary">
+<span class="material-symbols-outlined text-2xl" data-icon="inventory_2">inventory_2</span>
+</div>
+<div>
+<div class="flex items-center gap-3">
+<span class="font-label-md text-label-md text-text-muted font-mono">06 / IDENTITY</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Product Branding</h3>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted mt-2 max-w-lg leading-relaxed">
+                  End-to-end brand strategy, packaging, product narrative, and positioning systems.
+                </p>
+</div>
+</div>
+<a class="shrink-0 inline-flex items-center gap-1.5 text-primary font-label-lg text-label-lg hover:underline group" href="#contact">
+<span>Learn More</span>
+<span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. ABOUT SHIEVAI -->
+<section class="w-full bg-surface-pure py-space-xl border-b border-border-warm flex flex-col items-center" id="about">
+<div class="w-full max-w-[820px] mx-auto px-6 text-center flex flex-col items-center">
+<p class="font-label-md text-label-md text-primary tracking-widest mb-3 uppercase">About Us</p>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-6 tracking-tight">
+          Technology. Innovation. Better Property Insights.
+        </h2>
+<p class="font-body-lg text-body-lg text-text-muted leading-relaxed max-w-2xl mb-12">
+          ShievAI is a technology-driven business focused on making property price estimation more accessible while also providing digital and development solutions to businesses.
+        </p>
+<div class="w-full bg-[#FFFAF6] border border-[#F1DED0] p-8 md:p-10 rounded-2xl text-left flex items-start gap-6 shadow-sm">
+<span class="material-symbols-outlined text-4xl text-primary shrink-0 mt-1" data-icon="format_quote">format_quote</span>
+<div class="space-y-3">
+<p class="font-body-md text-body-md md:text-body-lg text-on-surface font-medium italic leading-relaxed">
+              "We believe real estate valuation should not remain an opaque, speculative domain. By merging automated computational valuation models with disciplined digital craft, we empower asset owners and businesses with straightforward, transparent tools."
+            </p>
+<p class="font-label-sm text-text-muted pt-2 border-t border-[#F1DED0]">
+              — Executive Direction, ShievAI Technologies Inc.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. CONTACT SECTION -->
+<section class="w-full bg-surface-subtle py-space-xl border-b border-border-warm flex flex-col items-center" id="contact">
+<div class="w-full max-w-[820px] mx-auto px-6 flex flex-col items-center">
+<div class="text-center mb-12">
+<p class="font-label-md text-label-md text-primary tracking-widest mb-3 uppercase">Get In Touch</p>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-4 tracking-tight">
+            Connect With ShievAI.
+          </h2>
+<p class="font-body-md text-body-md text-text-muted max-w-lg mx-auto leading-relaxed">
+            Have questions about our services or want to discuss a project? Get in touch with our team.
+          </p>
+</div>
+<!-- Polished, High-End Consultation Booking Interface -->
+<div class="w-full max-w-2xl bg-white border border-[#F1DED0] rounded-2xl p-8 md:p-10 shadow-xl">
+<form class="flex flex-col space-y-6" id="contact-form">
+<div class="flex flex-col">
+<label class="font-label-md text-label-md text-on-surface mb-2" for="full-name">Full Name</label>
+<input class="w-full bg-white border border-[#F1DED0] rounded-xl px-4 py-3.5 text-on-surface font-body-md focus:border-[#E87532] focus:ring-2 focus:ring-[#E87532] focus:outline-none transition-all placeholder:text-text-muted/50" id="full-name" name="name" placeholder="Arunachalam Muruganantham" required="" type="text"/>
+</div>
+<div class="flex flex-col">
+<label class="font-label-md text-label-md text-on-surface mb-2" for="email-address">Email Address</label>
+<input class="w-full bg-white border border-[#F1DED0] rounded-xl px-4 py-3.5 text-on-surface font-body-md focus:border-[#E87532] focus:ring-2 focus:ring-[#E87532] focus:outline-none transition-all placeholder:text-text-muted/50" id="email-address" name="email" placeholder="contact@domain.com" required="" type="email"/>
+</div>
+<div class="flex flex-col">
+<label class="font-label-md text-label-md text-on-surface mb-2" for="phone-number">Phone Number</label>
+<input class="w-full bg-white border border-[#F1DED0] rounded-xl px-4 py-3.5 text-on-surface font-body-md focus:border-[#E87532] focus:ring-2 focus:ring-[#E87532] focus:outline-none transition-all placeholder:text-text-muted/50" id="phone-number" name="phone" placeholder="+91 98765 43210" type="tel"/>
+</div>
+<div class="flex flex-col">
+<label class="font-label-md text-label-md text-on-surface mb-2" for="service-select">Service Interested In</label>
+<select class="w-full bg-white border border-[#F1DED0] rounded-xl px-4 py-3.5 text-on-surface font-body-md focus:border-[#E87532] focus:ring-2 focus:ring-[#E87532] focus:outline-none transition-all" id="service-select" name="service" required="">
+<option value="Real Estate Price Estimator">Real Estate Price Estimator</option>
+<option value="Website Development">Website Development</option>
+<option value="SEO">SEO</option>
+<option value="Mobile App Development">Mobile App Development</option>
+<option value="Logo Making">Logo Making</option>
+<option value="Screen Advertising">Screen Advertising</option>
+<option value="Product Branding">Product Branding</option>
+<option value="Other">Other</option>
+</select>
+</div>
+<div class="flex flex-col">
+<label class="font-label-md text-label-md text-on-surface mb-2" for="message-content">Message</label>
+<textarea class="w-full bg-white border border-[#F1DED0] rounded-xl px-4 py-3.5 text-on-surface font-body-md focus:border-[#E87532] focus:ring-2 focus:ring-[#E87532] focus:outline-none transition-all placeholder:text-text-muted/50" id="message-content" name="message" placeholder="Please outline your property inquiries or digital development requirements..." required="" rows="4"></textarea>
+</div>
+<button class="w-full bg-primary-container hover:bg-[#d66524] text-on-primary font-label-lg text-label-lg py-4 px-6 rounded-xl transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2 group" type="submit">
+<span>Send Enquiry</span>
+<span class="material-symbols-outlined text-base transition-transform group-hover:translate-x-1" data-icon="send">send</span>
+</button>
+<div class="hidden p-4 rounded-xl bg-[#FFF2E8] border border-[#F1DED0] text-center" id="form-success-banner">
+<p class="font-label-lg text-label-lg text-primary font-medium">Thank you for reaching out.</p>
+<p class="font-body-sm text-body-sm text-text-muted mt-1">Our advisory team has received your enquiry and will respond within 1 business day.</p>
+</div>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- CORPORATE FOOTER -->
+<footer class="bg-surface-subtle dark:bg-inverse-surface border-t border-border-warm dark:border-outline w-full">
+<div class="w-full max-w-[1140px] mx-auto px-margin py-space-xl flex flex-col space-y-space-md">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-border-warm">
+<div class="flex flex-col space-y-2">
+<div class="flex items-center gap-3">
+<img alt="ShievAI Corporate Logo" class="h-8 w-auto object-contain" src="assets/logo.svg"/>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted max-w-sm">
+            Empowering real estate stakeholders and modern businesses with intelligent price estimation and digital solutions.
+          </p>
+</div>
+<div class="flex items-center gap-3">
+<a class="inline-flex items-center gap-2 text-primary font-label-lg text-label-lg hover:underline" href="https://estimator.shievai.com" rel="noopener noreferrer" target="_blank">
+<span>Access Estimator Portal</span>
+<span class="material-symbols-outlined text-sm" data-icon="open_in_new">open_in_new</span>
+</a>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-x-8 gap-y-3 pt-2">
+<a class="text-text-muted dark:text-outline-variant hover:text-on-surface dark:hover:text-inverse-on-surface font-body-sm text-body-sm transition-colors duration-150" href="#about">Privacy Policy</a>
+<a class="text-text-muted dark:text-outline-variant hover:text-on-surface dark:hover:text-inverse-on-surface font-body-sm text-body-sm transition-colors duration-150" href="#about">Terms of Service</a>
+<a class="text-primary dark:text-inverse-primary font-medium font-body-sm text-body-sm" href="https://estimator.shievai.com" rel="noopener noreferrer" target="_blank">Real Estate Estimator</a>
+<a class="text-text-muted dark:text-outline-variant hover:text-on-surface dark:hover:text-inverse-on-surface font-body-sm text-body-sm transition-colors duration-150" href="#estimator-intro">Architectural Intelligence</a>
+<a class="text-text-muted dark:text-outline-variant hover:text-on-surface dark:hover:text-inverse-on-surface font-body-sm text-body-sm transition-colors duration-150" href="#digital-services">Digital Services</a>
+<a class="text-text-muted dark:text-outline-variant hover:text-on-surface dark:hover:text-inverse-on-surface font-body-sm text-body-sm transition-colors duration-150" href="#contact">Contact Support</a>
+</div>
+<div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-text-muted font-body-sm text-body-sm gap-4">
+<p>© 2025 ShievAI Technologies Inc. All rights reserved.</p>
+<p class="font-caption text-caption text-text-muted">Designed in collaboration with Modern Architectural Intelligence Standards.</p>
+</div>
+</div>
+</footer>
+<script>
+    const header = document.getElementById('main-header');
+    const mobileBtn = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function updateHeaderState() {
+      if (!header) return;
+      const menuOpen = mobileMenu && !mobileMenu.classList.contains('hidden');
+      if (window.scrollY > 40 || menuOpen) {
+        header.classList.remove('nav-transparent');
+      } else {
+        header.classList.add('nav-transparent');
+      }
+    }
+
+    window.addEventListener('scroll', updateHeaderState, { passive: true });
+    updateHeaderState();
+
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        updateHeaderState();
+      });
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          updateHeaderState();
+        });
+      });
+    }
+
+    const contactForm = document.getElementById('contact-form');
+    const successBanner = document.getElementById('form-success-banner');
+    if (contactForm) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (successBanner) {
+          successBanner.classList.remove('hidden');
+          contactForm.reset();
+          successBanner.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+    }
+  </script>
+</body></html>

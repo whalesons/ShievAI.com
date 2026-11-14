@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80" fill="none">
+  <g transform="translate(10, 15)">
+    <!-- Architectural roof / smart polygon mark -->
+    <path d="M25 5 L45 25 L35 25 L35 45 L15 45 L15 25 L5 25 Z" fill="#E87532"/>
+    <path d="M25 15 L37 27 L30 27 L30 40 L20 40 L20 27 L13 27 Z" fill="#FFF2E8"/>
+    <circle cx="25" cy="27" r="4" fill="#E87532"/>
+  </g>
+  <text x="75" y="48" font-family="'Space Grotesk', 'Inter', sans-serif" font-size="32" font-weight="700" letter-spacing="-0.03em" fill="#24211F">
+    Shiev<tspan fill="#E87532">AI</tspan>
+  </text>
+  <text x="76" y="62" font-family="'Inter', sans-serif" font-size="9" font-weight="600" letter-spacing="0.22em" fill="#706963" text-transform="uppercase">
+    Real Estate Technology
+  </text>
+</svg>
